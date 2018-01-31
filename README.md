@@ -1,3 +1,40 @@
+# iView
+项目中需要实现周选择
+
+引用方法
+```vue
+<template>
+    <div>	 
+        <DatePicker v-model="value5" @on-change="handleChange" type="week" placeholder="Select date" style="width: 300px"></DatePicker> 
+    </div>
+</template>
+<script>
+    import DatePicker from '../components/date-picker'
+    export default {
+        data () {
+            return {
+                value: ['2018-03-05 10:00:00', '2018-05-15 10:01:00'],
+                value2: '2018-02-05 10:09:00',
+                value3: '1978',
+                value5: ['2018-03-05 10:00:00', '2018-05-15 10:01:00'],
+                value4: '1978-05'
+            }
+        },
+        created () {
+            console.log(33323)
+        },
+        components: {DatePicker},
+        methods: {
+            handleChange (v,vis,index) {
+                console.log(v);
+                console.log(vis+'--------')
+            }
+        }
+    }
+</script>
+```
+
+
 <p align="center">
     <a href="https://www.iviewui.com">
         <img width="200" src="https://file.iviewui.com/logo.svg">
