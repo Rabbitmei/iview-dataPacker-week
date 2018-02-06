@@ -184,18 +184,22 @@
                 if (this.week && this.week !== 'undefined') {                    
                     //console.log(cells)
                      for(let i = 0 ;i<cells.length;i++){
+                       let weekNumbers = getWeekNumber(cells[i].date)
                         if(i==0 || i%7==0){
                             //console.log(getWeekNumber(cells[i].date))
                             var weekp = {
-                                text: getWeekNumber(cells[i].date),
+                                text: weekNumbers,
                                 weekp: true,
                                 type: 'week-p',
                                 date:getWeekMinMax(cells[i].date,6),
-                                weekIndex: getWeekNumber(cells[i].date),
-                            };                          
+                                weekIndex: weekNumbers,
+                                datefomate: formatDate(cells[i].date)
+                            };  
+                            //console.log(weekp); 
+                            //console.log(weekp);                  
                             cellWeek.push(weekp);
                         }
-                        cells[i].weekIndex = getWeekNumber(cells[i].date)
+                        cells[i].weekIndex = getWeekNumber(getWeekMinMax(cells[i].date,0))   
                         cellWeek.push(cells[i])
                     }
                 }else{
