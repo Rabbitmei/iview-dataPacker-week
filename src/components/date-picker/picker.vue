@@ -279,7 +279,7 @@
                     const value = this.internalValue;
                     const week = [];                  
                     if (!value) return;
-                    if(this.type === 'week') {
+                    if(this.type === 'week' && value[0]) {
                         week.push(getWeekMinMax(value[0],0))
                         week.push(getWeekMinMax(value[0],6))                        
                     }
@@ -288,7 +288,7 @@
                         TYPE_VALUE_RESOLVER_MAP['default']
                     ).formatter;
                     const format = DEFAULT_FORMATS[this.type];
-                    if(this.type === 'week') {                      
+                    if(this.type === 'week' && value[0]) {                      
                         return formatter(week, this.format || format);
                     }else{
                         return formatter(value, this.format || format);
@@ -344,7 +344,7 @@
                 const type = this.type;
                 const format = this.format || DEFAULT_FORMATS[type];
 
-                if (type === 'daterange' || type === 'timerange' || type === 'datetimerange') {
+                if (type === 'daterange' || type === 'timerange' || type === 'datetimerange' || type === 'week') {
                     const parser = (
                         TYPE_VALUE_RESOLVER_MAP[type] ||
                         TYPE_VALUE_RESOLVER_MAP['default']
@@ -458,7 +458,7 @@
                         this.picker.showTime = true;
                     }
                     const week = [];     
-                    if(this.type === 'week') {
+                    if(this.type === 'week' && this.internalValue[0]) {
                         week.push(getWeekMinMax(this.internalValue[0],0))
                         week.push(getWeekMinMax(this.internalValue[0],6))   
                          this.internalValue = week                
@@ -524,7 +524,7 @@
                 ).formatter;
 
                 let newDate = formatter(date, format);
-                if (type === 'daterange' || type === 'timerange' || type === 'datetimerange' ) {
+                if (type === 'daterange' || type === 'timerange' || type === 'datetimerange' || type == 'week') {
                     newDate = [newDate.split(RANGE_SEPARATOR)[0], newDate.split(RANGE_SEPARATOR)[1]];
                 }
 
